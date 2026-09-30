@@ -1,185 +1,97 @@
-# SEA Stage 2 - Data Catalog Project
+# Spirits of the Continent
 
-This repository contains the instructions, requirements, and starter code for Stage Two of the Snap Engineering Academy application process.
+Spirits of the Continent is a digital mythology catalogue and cultural archive focused on African deities, spirits, tricksters, monsters, and ancestral figures from across Sub-Saharan Africa. The project combines a landing page, curated mythology data, and an interactive catalog that lets users explore entries, filter them, and add their own contributions.
 
----
+This project was built with vanilla HTML, CSS, and JavaScript to showcase a dataset-driven web application without frameworks.
 
-## 📚 Table of Contents
+## What the project does
 
-- [Your Task](#your-task)
-- [Requirements](#requirements---your-catalog-website-should)
-- [Getting Started](#getting-started)
-- [Submitting](#submitting)
-- [❓ Frequently Asked Questions (FAQ)](#-frequently-asked-questions-faq)
+The site has two main views:
 
----
+- A landing page at index.html that introduces the project and presents the theme of a digital museum of African mythology.
+- A catalogue page at hero.html where users can browse and interact with the collected mythology entries.
 
-## 🎯 Your Task
+The JavaScript in scripts.js creates the catalogue experience by:
 
-### <p align="center">Create a "catalog" website for something you're passionate about.</p>
+- storing the mythology data in a JavaScript array of objects
+- rendering cards dynamically to the page
+- filtering by type, region, country, tribe, and favorites
+- searching by name, country, tribe, or description
+- sorting entries alphabetically or by region/type
+- allowing users to view full details in a modal
+- enabling users to add, edit, and remove entries from the archive
+- handling image uploads for custom entries
 
-> 📝 **Note:**  
-> If you have not used GitHub or programmed a website with JavaScript before, that's OK! Part of the challenge is figuring out things you're not familiar with.
+## Project overview
 
----
+The project is centered around a dataset called mythsArray. Each item in the array represents a mythological figure and contains fields such as:
 
-## ✅ Requirements - Your Catalog Website Should...
+- id
+- name
+- type
+- country
+- region
+- tribe
+- description
+- image
+- lore
 
-- Show off your understanding of basic data structures: [**arrays**](https://www.w3schools.com/js/js_arrays.asp) and [**objects**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_objects).
-- Display a **substantial amount of interesting data** in a "catalog". You can look online for datasets or create your own. Make sure you import the data yourself and are not fetching an API.
-  - Your data should be easy to find in your source code—either in variables at the top of `scripts.js` or imported from a file.
-- Include **two or more features** that **operate** on your data and modify how the data is displayed. Examples of features that operate on your data are:
-  - Filtering
-  - Searching
-  - Sorting
-  - Updating
-  - Adding/removing entries  
-    Think about what users might want to do while using your site!
-- Look polished ✨. Use **HTML** and **CSS** to make your data easy to read and visually appealing.
-- Be built from this **starter code**—you can change anything you want, but build on top of it.
-- Be an **original** project. Please do not submit something previously created for a class, internship, or client.  
-  You are encouraged to use online resources, but **make sure you understand every line of code** in your project.
+This structure allows each entry to behave like a reusable object within the app, making it easy to render, search, filter, and update.
 
----
+## Features included
 
-## 🛠️ Getting Started
+- Search bar for quick lookup by name or other metadata
+- Type filters for Deity, Spirit, Trickster, Monster, and Ancestor
+- Region filters for West Africa, East Africa, Central Africa, and Southern Africa
+- Country and tribe dropdown filters
+- Sort options for A–Z, Z–A, region, and type
+- Favorite toggle to save and revisit selected entries
+- Full detail modal showing extended lore and descriptive information
+- Add-entry form for contributing new mythological figures
+- Edit form for updating existing entries
+- Remove function for deleting entries from the archive
+- Responsive, museum-style visual design with a cinematic landing page
 
-1. [**Create a GitHub account**](https://github.com/) if you haven't already.
-2. Click the blue **"Use as Template"** button in the upper right corner, then choose **"Create a new repository"**:  
-   <img height="300" alt="Screenshot of catalog example" src="./assets/templateArrow.png">
-   Then :
+## File structure
 
-   2a. Choose yourself as the owner (aka your github account)
-   <br>
-   2b. Give your repository a name
-   <br>
-   2c. Click **"Create Repository"**
+- index.html — intro page / home screen for the project
+- hero.html — main catalogue interface and interactive data browser
+- style.css — the visual styling for both pages and catalogue components
+- scripts.js — all dataset logic, DOM rendering, filters, modals, and interactivity
+- assets/ — media and dataset imagery used by the site
 
-3. Copy or download the files to your own computer.
-4. Open and edit the code using a text editor or an IDE, a popular IDE is [vsCode](https://code.visualstudio.com/):
-   - Take your time and read the files, read the comments as they are intended to guide you!
-   - Modify `index.html`, `style.css`, and `scripts.js`.
-   - To preview, open `index.html` in a web browser (double-click it).
-   - You should see something like this:
+## How the code works
 
-<img  alt="Screenshot of use template button location" src="https://github.com/Snap-Engineering-Academy-2023/rn_lab1/assets/7607483/fdd57236-50fe-48ca-956d-d9b4b12db038">
+The core behavior in scripts.js is driven by a filter state object called currentFilters, which tracks:
 
----
+- the current search term
+- active type filters
+- active region filters
+- selected tribe and country
+- chosen sort order
+- whether favorites-only mode is enabled
 
-## 🚀 Submitting
+When the page loads, the app runs the following initialization flow:
 
-1. **Publish your website to the internet!**  
-   We recommend using [GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site#creating-your-site).
-2. **Test the published version.**  
-   Make sure everything works properly before submitting.
-3. **Update your GitHub repository** so it reflects the latest version of your project.
-4. **Submit** BOTH:
-   - The **URL** to your published website
-   - The **link** to your GitHub repository  
-     …via the Google Form linked in your email.
-5. Complete the video questions via the loom platform
+1. renderMythsCatalogue() builds the visible cards
+2. setupEventListeners() attaches all UI event handlers
+3. populateTribeDropdown() and populateCountryDropdown() load available options
+4. updateFavoritesCount() refreshes the favorites badge
 
----
+The app then re-renders the catalogue whenever a user changes search, filters, sort order, or favorites.
 
-## ❓ Frequently Asked Questions (FAQ)
+## Running locally
 
-### ❄️ Is it OK that my catalog resets when I refresh the page?
+To view the project locally:
 
-**Yes!** That's exactly what the starter code does too. You don't need to worry about preserving data after a page refresh.
+1. Download or clone the repository.
+2. Open index.html in a browser, or run a lightweight local server if preferred.
+3. Navigate to the landing page and then enter the catalogue from there.
 
----
-
-### 💻 Can I copy bits of code from online resources?
-
-**Yes, absolutely!** You should search for and use **small chunks** of code.  
-For example:
-
-- ✅ Copying code to create a dropdown menu is fine.
-- ❌ Copying a full “filter data by date” feature is not.
-
-Be thoughtful about what you borrow!
-
----
-
-### 🤖 Can I use generative AI (like ChatGPT or Copilot)?
-
-**Partially.**
-
-- ✅ You _may_ use AI tools to help write **HTML** and **CSS**.
-- ❌ You _may not_ use AI to write **JavaScript**.
-
-HTML/CSS can be tricky to get right, and it's okay to get help making things look nice.  
-But JavaScript is where you show your own logic and understanding of data!
-
----
-
-### 🧰 Can I use a different template?
-
-**Nope!**  
-You must use the provided starter code, though you're free to customize it however you like.  
-You _can_ copy **small chunks** from other templates if needed.
-
----
-
-### 🛠️ Can I use a framework like React, Vue, Bootstrap, or Tailwind?
-
-**Nope!**  
-This project is for folks new to web dev. Frameworks do a lot of heavy lifting and hide the logic we're asking you to demonstrate.  
-SEA will teach you frameworks later—stick to **vanilla HTML, CSS, and JS** for now.
-
----
-
-### 🌐 Can I use APIs?
-
-**Nope!**  
-APIs can add complexity beyond the scope of this challenge.  
-If you really want to use data from an API, **save it to a file** (like `.json` or `.csv`) and use that instead.
-
----
-
-> 💬 **Have any questions?** Drop them on the [Padlet here](https://padlet.com/arlenschallenge/2026-snap-engineering-academy-stage-2-project-assessment-que-9oux20x1z3g8lyyd) and we'll get back to you!
-
----
-
-## 🌍 About This Project
-
-This project is a digital catalog dedicated to African Mythology, showcasing deities, spirits, tricksters, and legendary creatures from across the African continent. The website serves as a digital museum, preserving and sharing the rich oral traditions and cultural heritage of various African communities.
-
-### Features Implemented
-
-The catalog includes the following functionality:
-
-- **Data Display**: A comprehensive collection of 40 mythology entries, each containing detailed information including name, type (Deity, Spirit, Trickster, Monster, Ancestor), country, region, tribe, description, and extended lore.
-
-- **Filtering System**: Users can filter entries by:
-  - Type (Deity, Spirit, Trickster, Monster, Ancestor)
-  - Region (West Africa, East Africa, Central Africa, Southern Africa)
-  - Country
-  - Tribe
-
-- **Search Functionality**: A real-time search feature that allows users to find entries by name.
-
-- **Sorting**: Options to sort entries alphabetically (A-Z and Z-A).
-
-- **Favorites**: Users can save their favorite entries to a favorites list for quick access.
-
-- **Add New Entries**: A "Contribute to the Archive" feature that allows users to add new mythology entries, including uploading images from their device.
-
-- **Edit & Remove**: Ability to edit existing entries or remove them from the catalog.
-
-- **Detailed View**: Each entry can be clicked to view full details including extended lore.
-
-### Technical Implementation
-
-- **HTML, CSS, and JavaScript**: Built entirely without frameworks, demonstrating understanding of core web technologies.
-- **Data Structures**: Uses JavaScript arrays and objects to store and manage the mythology data.
-- **DOM Manipulation**: Dynamic rendering of catalog entries using JavaScript.
-- **File Handling**: Image upload functionality using the FileReader API to handle local image files.
-
----
-
-## 🌐 Website
+## Live site
 
 https://wanjavwa.github.io/SnapChat-SEA-Project-Wanjavwa-Nzobokela/
 
----
+## Summary
+
+This repository is a complete mythology catalog website that preserves African storytelling traditions through an interactive, data-driven interface. It demonstrates front-end web development with data modeling, filtering, sorting, DOM manipulation, and user-generated content handling in a single-page JavaScript app.
